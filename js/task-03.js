@@ -12,3 +12,48 @@ const images = [
     alt: "Group of Horses Running",
   },
 ];
+
+const galleryRef = document.querySelector("ul.gallery");
+
+const markup = images.map((img) => `<li><img src="${img.url}" alt="${img.alt}" /></li>`).join("");
+
+galleryRef.insertAdjacentHTML("afterbegin", markup);
+
+// style
+const listStylesGallery = {
+  display: "grid",
+  listStyle: "none",
+  gridTemplateColumns: "1fr 1fr 1fr",
+  gap: "40px",
+  margin: "0",
+  padding: "0",
+};
+
+const nameStylesGallery = Object.keys(listStylesGallery);
+
+nameStylesGallery.forEach(
+  (nameListStyle) =>
+    (galleryRef.style[nameListStyle] = listStylesGallery[nameListStyle])
+);
+
+// style img
+const imgStylesGallery = {
+  display: "block",
+  height: "auto",
+  width: "100%",
+};
+
+const itemsGalleryEl = galleryRef.children;
+
+const nameImgStylesGallery = Object.keys(imgStylesGallery);
+
+for (const itemEl of itemsGalleryEl) {
+  itemEl.style.margin = "auto";
+
+  const imgEl = itemEl.querySelector("img");
+
+  nameImgStylesGallery.forEach(
+    (nameImgStyles) =>
+      (imgEl.style[nameImgStyles] = imgStylesGallery[nameImgStyles])
+  );
+}
